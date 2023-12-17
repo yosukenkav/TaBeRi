@@ -24,7 +24,7 @@
               <tr class="hover:bg-gray-lighter">
                     <td class="py-4 px-6 border-b border-gray-light dark:border-gray-600 dark:text-gray-200" white-space: nowrap>{{$dish->weight}}</td>
                     <td class="py-4 px-6 border-b border-gray-light dark:border-gray-600 dark:text-gray-200" white-space: nowrap>{{$dish->protein_drinks}}</td>
-                  
+                    
                   <div class="flex">
                     <!--更新ボタン-->
                     <!--削除ボタン-->
