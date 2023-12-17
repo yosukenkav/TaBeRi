@@ -34,6 +34,7 @@ class DishController extends Controller
         $validator = Validator::make($request->all(), [
             'weight' => 'required | numeric|min:0',
             'protein_drinks' => 'required|integer|min:0|max:10',
+          
         ]);
         // バリデーション:エラー
         if ($validator->fails()) {
@@ -42,6 +43,7 @@ class DishController extends Controller
             ->withInput()
             ->withErrors($validator);
         }
+         
         // create()は最初から用意されている関数
         // 戻り値は挿入されたレコードの情報
         $result = Dish::create($request->all());
