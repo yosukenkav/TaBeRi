@@ -30,24 +30,34 @@ class DishController extends Controller
      */
     public function store(Request $request)
     {
-                // ƒoƒŠƒf[ƒVƒ‡ƒ“
+                // ï¿½oï¿½ï¿½ï¿½fï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½
         $validator = Validator::make($request->all(), [
             'weight' => 'required | numeric|min:0',
             'protein_drinks' => 'required|integer|min:0|max:10',
           
         ]);
-        // ƒoƒŠƒf[ƒVƒ‡ƒ“:ƒGƒ‰[
+        // ï¿½oï¿½ï¿½ï¿½fï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½:ï¿½Gï¿½ï¿½ï¿½[
         if ($validator->fails()) {
             return redirect()
             ->route('dish.create')
             ->withInput()
             ->withErrors($validator);
         }
-         
-        // create()‚ÍÅ‰‚©‚ç—pˆÓ‚³‚ê‚Ä‚¢‚éŠÖ”
-        // –ß‚è’l‚Í‘}“ü‚³‚ê‚½ƒŒƒR[ƒh‚Ìî•ñ
-        $result = Dish::create($request->all());
-        // ƒ‹[ƒeƒBƒ“ƒOutodo.indexv‚ÉƒŠƒNƒGƒXƒg‘—Miˆê——ƒy[ƒW‚ÉˆÚ“®j
+        // ä½“é‡ã‚’1.4å€ã—ãŸç†æƒ³çš„ã‚¿ãƒ³ãƒ‘ã‚¯è³ªé‡ã‚’è¨ˆç®—
+        $idealProteinAmount = $request->input('weight') * 1.4;
+
+        // ãƒ—ãƒ­ãƒ†ã‚¤ãƒ³1æ¯ã«ã¤ãï¼‘ï¼gã¨ã—ã¦ã‚¿ãƒ³ãƒ‘ã‚¯è³ªé‡ã‚’è¨ˆç®—
+        $actualProteinAmount = $request->input('protein_drinks') * 10;
+
+        // create()ï¿½ÍÅï¿½ï¿½ï¿½ï¿½ï¿½pï¿½Ó‚ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½Öï¿½
+        // ï¿½ß‚ï¿½lï¿½Í‘}ï¿½ï¿½ï¿½ï¿½ï¿½ê‚½ï¿½ï¿½ï¿½Rï¿½[ï¿½hï¿½Ìï¿½ï¿½
+        $result = Dish::create([
+            'weight' => $request->input('weight'),
+            'protein_drinks' => $request->input('protein_drinks'),
+            'ideal_protein_amount' => $idealProteinAmount, 
+            'actual_protein_amount' => $actualProteinAmount,
+        ]); 
+        // ï¿½ï¿½ï¿½[ï¿½eï¿½Bï¿½ï¿½ï¿½Oï¿½utodo.indexï¿½vï¿½Éƒï¿½ï¿½Nï¿½Gï¿½Xï¿½gï¿½ï¿½ï¿½Mï¿½iï¿½ê——ï¿½yï¿½[ï¿½Wï¿½ÉˆÚ“ï¿½ï¿½j
         return redirect()->route('dish.index');
     }
 
