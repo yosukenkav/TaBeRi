@@ -12,17 +12,30 @@
       <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
         <div class="p-6 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-800 ">
           @include('common.errors')
-          <form class="mb-6" action="{{ route('dish.store') }}" method="POST" >
+          <form class="mb-6" action="{{ route('dish.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
-                <label for="weight">体重（kg）:</label>
+                <label for="weight" class="text-gray-700 dark:text-gray-300">体重（kg）:</label>
                 <input type="number" step="any" class="form-control" id="weight" name="weight" required>
             </div>
             <div class="form-group">
-                <label for="protein_drinks">プロテイン（杯）:</label>
-                <input type="number" step="any" class="form-control" id="protein_drinks" name="protein_drinks" required>           
+                <label for="protein_drinks" class="text-gray-700 dark:text-gray-300">プロテイン（杯）:</label>
+                <input type="number" step="any" class="form-control" id="protein_drinks" name="protein_drinks" >           
             </div>
-           
+            <div class="mb-4">
+                <label for="image" class="text-gray-700 dark:text-gray-300">朝食の画像:</label>
+                <input type="file" name="image_breakfast" id="image_breakfast" class="form-input" placeholder="画像をアップロードしてください"required>
+            </div>
+
+            <div class="mb-4">
+                <label for="image" class="text-gray-700 dark:text-gray-300">昼食の画像:</label>
+                <input type="file" name="image_lunch" id="image_lunch" class="form-input" placeholder="画像をアップロードしてください" required>
+            </div>
+
+            <div class="mb-4">
+                <label for="image" class="text-gray-700 dark:text-gray-300">夕食の画像:</label>
+                <input type="file" name="image_dinner" id="image_dinner" class="form-input" placeholder="画像をアップロードしてください" required>
+            </div>
             <div class="flex items-center justify-end mt-4">
               <x-primary-button class="ml-3">
                 {{ __('登録') }}
