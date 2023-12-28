@@ -3,6 +3,8 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DishController;
+use App\Http\Controllers\ChatController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +15,9 @@ use App\Http\Controllers\DishController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('/chat', [ChatController::class, 'index'])->name('chat.index');
+Route::post('/chat', [ChatController::class, 'chat'])->name('chat.chat');
+
 Route::resource('dish', DishController::class);
 
 Route::get('/', function () {
