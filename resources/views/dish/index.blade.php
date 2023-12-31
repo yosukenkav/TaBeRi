@@ -14,13 +14,13 @@
           <table class="text-center w-full border-collapse">
             <thead>
               <tr>
-                 <th class="py-4 px-6 bg-gray-lightest dark:bg-gray-darkest font-bold uppercase text-lg text-gray-dark dark:text-gray-200 border-b border-grey-light dark:border-grey-dark">体重(kg)</th>
-                 <th class="py-4 px-6 bg-gray-lightest dark:bg-gray-darkest font-bold uppercase text-lg text-gray-dark dark:text-gray-200 border-b border-grey-light dark:border-grey-dark"white-space: >理想的なタンパク質摂取量(g)</th>
+                 <th class="py-4 px-6 bg-gray-lightest dark:bg-gray-darkest font-bold text-lg text-gray-dark dark:text-gray-200 border-b border-grey-light dark:border-grey-dark">体重(kg)</th>
+                 <th class="py-4 px-6 bg-gray-lightest dark:bg-gray-darkest font-bold text-lg text-gray-dark dark:text-gray-200 border-b border-grey-light dark:border-grey-dark"white-space: >理想的なタンパク質摂取量(g)</th>
                  <th class="py-4 px-6 bg-gray-lightest dark:bg-gray-darkest font-bold uppercase text-lg text-gray-dark dark:text-gray-200 border-b border-grey-light dark:border-grey-dark"white-space: >プロテイン(杯数)</th>
                  <th class="py-4 px-6 bg-gray-lightest dark:bg-gray-darkest font-bold uppercase text-lg text-gray-dark dark:text-gray-200 border-b border-grey-light dark:border-grey-dark" white-space: nowrap>朝食画像</th>
                  <th class="py-4 px-6 bg-gray-lightest dark:bg-gray-darkest font-bold uppercase text-lg text-gray-dark dark:text-gray-200 border-b border-grey-light dark:border-grey-dark" white-space: nowrap>昼食画像</th>
                  <th class="py-4 px-6 bg-gray-lightest dark:bg-gray-darkest font-bold uppercase text-lg text-gray-dark dark:text-gray-200 border-b border-grey-light dark:border-grey-dark" white-space: nowrap>夕食画像</th>
-                 <th class="py-4 px-6 bg-gray-lightest dark:bg-gray-darkest font-bold uppercase text-lg text-gray-dark dark:text-gray-200 border-b border-grey-light dark:border-grey-dark"white-space: >タンパク質摂取量(g)</th>
+                 <th class="py-4 px-6 bg-gray-lightest dark:bg-gray-darkest font-bold text-lg text-gray-dark dark:text-gray-200 border-b border-grey-light dark:border-grey-dark"white-space: >タンパク質摂取量(g)</th>
                  
 
 
