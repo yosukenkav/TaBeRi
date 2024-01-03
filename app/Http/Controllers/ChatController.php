@@ -77,19 +77,27 @@ class ChatController extends Controller
 
         return view('chat.gpt', compact('sentence', 'chat_response'));
     }
-      /**
+         /**
      * ChatGPT API呼び出し
-     * ライブラリ
+     * cURL
      */
     function chat_gpt($system, $user)
     {
+        // ChatGPT APIのエンドポイントURL
+        $url = "https://api.openai.com/v1/chat/completions";
 
         // APIキー
         $api_key = env('OPENAI_API_KEY');
 
+        // ヘッダー
+        $headers = array(
+            "Content-Type: application/json",
+            "Authorization: Bearer $api_key"
+        );
+
         // パラメータ
         $data = array(
-            "model" => "gpt-4-vision-preview",
+            "model" => "gpt-3.5-turbo",
             "messages" => [
                 [
                     "role" => "system",
@@ -102,21 +110,29 @@ class ChatController extends Controller
             ]
         );
 
-        $openaiClient = \Tectalic\OpenAi\Manager::build(
-            new \GuzzleHttp\Client(),
-            new \Tectalic\OpenAi\Authentication($api_key)
-        );
+        // cURLセッションの初期化
+        $ch = curl_init();
 
-        try {
+        // cURLオプションの設定
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
-            $response = $openaiClient->chatCompletions()->create(
-                new \Tectalic\OpenAi\Models\ChatCompletions\CreateRequest($data)
-            )->toModel();
+        // リクエストの送信と応答結果の取得
+        $response = json_decode(curl_exec($ch));
 
-            return $response->choices[0]->message->content;
-        } catch (\Exception $e) {
-            return "ERROR";
+        // cURLセッションの終了
+        curl_close($ch);
+
+        // 応答結果の取得
+        if (isset($response->error)) {
+            // エラー
+            return $response->error->message;
         }
+
+        return $response->choices[0]->message->content;
     }
 
 
