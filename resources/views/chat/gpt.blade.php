@@ -20,14 +20,21 @@
             <tbody>
               
               <tr class="hover:bg-gray-lighter">
-                <td class="py-4 px-6 border-b border-gray-light dark:border-gray-600">
+                <td class="py-4 px-6 border-b border-gray-light dark:border-gray-600"white-space: normal text-overflow: clip>
                  
-                  <div class="flex">
-                    <form method="POST">
+                  <div class="flex"white-space: normal text-overflow: clip>
+                    <form method="POST" enctype="multipart/form-data">
                         @csrf
-                        <textarea rows="10" cols="50" name="sentence">{{ isset($sentence) ? $sentence : '' }}</textarea>
-                        <button type="submit">ChatGPT</button>
+                        <!-- <textarea rows="10" cols="50" name="sentence">{{ isset($sentence) ? $sentence : '' }}</textarea>
+                         -->
+                        <!-- <input type="text" id="prompt-input" placeholder="Enter a prompt" />     
+                         URL“ü—ÍƒGƒŠƒA -->
+                        <!-- <input type="text" id="url-input" placeholder="Enter a URL" />
+                        <button type="submit">Generate</button>
+        -->
+                        <!-- <button type="submit">ChatGPT</button> -->
                     </form>
+                    <!-- <div id="vision-container"></div> -->
 
                     {{-- Œ‹‰Ê --}}
                     {{ isset($chat_response) ? $chat_response : '' }}
