@@ -6,8 +6,8 @@
         <!-- Logo -->
         <div class="shrink-0 flex items-center">
           <a href="{{ route('dashboard') }}">
-            <x-application-logo class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
-           
+            <!-- <x-application-logo class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" /> -->
+            <img src="https://msp.c.yimg.jp/images/v2/FUTi93tXq405grZVGgDqG2AoUavYICofW4nLC9RLaFxMLC0KRTZFmhB3uxFKgffsGS8WtnhFMmZaFER5bR1Q1hnC7fs7dnhzD7bcew0wvnUBi4aYQaJGWDB0GLCF6jzmSbW26eHRPnMpi8xXMxRyJtQstcArSpE8FhegqD4LKvxQF_JUrI3djSr2MCj9vPD9O1rBLHqolll5mBOjBKmbL-CGNIY5Nx39C4NtQwfwVLFgJ_PbyaqQKCeN6rH5HASRV9urgs7zoZRNEjhSomTGT-C4WAjChAmFyj2wdyKlnxiy9mot-R60-r_NB4T4WaGsHakqdBYBzZlPDVk7xBLIvRk77eBV-ayqi74VSgVzwUDTfYOAl3vsIhwdyYQMx5uyKBe2mhwAokyAktEPzQlypw==/sports_protein_man.png?errorImage=false" width="50" height=""50>
           </a>
         </div>
 

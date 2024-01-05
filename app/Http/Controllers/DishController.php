@@ -78,7 +78,7 @@ class DishController extends Controller
         //$dish['user_id'] = $user;
         $dish['image_breakfast'] = $path1[1];
         $dish['image_lunch'] = $path2[1];
-        $dish['image_lunch'] = $path3[1];  //$path[0] はディレクトリ、$path[1] はファイル名
+        $dish['image_dinner'] = $path3[1];  //$path[0] はディレクトリ、$path[1] はファイル名
         //Dish::create($dish);
 
 
