@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use OpenAI\Laravel\Facades\OpenAI;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Http\JsonResponse;
+use GuzzleHttp\Client;
 
 class ChatController extends Controller
 {
@@ -99,27 +101,25 @@ class ChatController extends Controller
         // パラメータ
         $data = array(
             "model" => "gpt-4-vision-preview",
-            "messages" => [
+            'messages' => [
                 [
-                    "role" => "system",
-                    "content" => $system
-                ],
-                [
-                    "role" => "user",
-                    /*普通のChatGPTを使用するときはモデルを変え、この下のcontentのスラッシュを外し、
-                    その下のcontentをメモ化する。その後gpt.blade.phpでチャット入力欄のスラッシュを外す*/
-                    // "content" => $user
-                     "content" => [
-                        ["type" => "text", "text" => "この画像の食べ物のタンパク質量はいくらですか?数字だけで教えて。料理の説明は省いて、答えは一つだけで「～」は含めずに"],
+                    'role' => 'user',
+                    'content' => [
                         [
-                            "type" => "image_url",
-                            "image_url" => [
-                                "url" => "https://msp.c.yimg.jp/images/v2/FUTi93tXq405grZVGgDqGx5cm8knTLo61O84kVTxOan841a30-aIJSoqkmlQNsP4-Qv0KVqX9M9vYFUiwJk7TWC4I9M2xzEn4jfvB8Tnx5W1RMwvdTKvg5pjf-M3lAKmHoFWxcKsmDfi9rrcY3k9Jl4FRESWO_vYjdXJqrqpz_sXjGAMkpj2eUUXlg3t3iiuCITFF-aPUGdyfrOra1WB6yFBs9oPqOusD6743oMlUc8EQYcyjwsGR8PM50WvMuj0oRxh8zvNXiOK1yLgoAmUiXs3b3kBjpdMWKXK42gzUtovefhytAgJXJFtHL6ebGFMmAg7ww3zxs_v9R7mTm4VyTmXGkbipENC5DHA6WE5LAbJ2-Olp65OWTjxpRNR-KMvjyQLznaq2deDq1ohPfhnLSFBs9oPqOusD6743oMlUc8EQYcyjwsGR8PM50WvMuj0oRxh8zvNXiOK1yLgoAmUiWg3I0Sdvq9AMtRSJ6QbCubY55o1Ttb_VoLhot389aS3HoFWxcKsmDfi9rrcY3k9Jl4FRESWO_vYjdXJqrqpz_sXjGAMkpj2eUUXlg3t3iiug2TUWon14TQrPwboFlQOaA==/260px-Shoyu_ramen2C_at_Kasukabe_Station_282014.05.0529_1.jpg?errorImage=false",
-                            ],
+                            'type' => 'text',
+                            'text' => "How many grams of protein is in the dish in this image?"
                         ],
-                    ],
+                        [
+                            'type' => 'image_url',
+                            'image_url' => [
+                                'url' => "https://msp.c.yimg.jp/images/v2/FUTi93tXq405grZVGgDqG3uPbEehoaE1x8k4iHtREk2CQrr27F9y77piL4TCEv75hNGMojgTSwVpq9eGVh36CkuA1wUr3ln1_o6Lb5ZQEhODdMiiDalnMTusagyBhGp0ynGaCXk64_MS7d9mKHg4t9dUoE0j4IzKgY7mkFbcs-XDQ86bZxJInosiZpfcuw2sm-IdQhe1k9mkFH97FntIaqgs7cXbBhuZzt9pldxTO9Sii2qcfaX5BkVVcdTaV0gXhAn5c4Pb7oIKJru4MkndC558lliU0iEBWsbBEYE4umIdXOKzXOau0Y7NWdN08Y4an3YRmvSR_F9vvX52zvfiAtB8OKqRR9lgQWo6zj3yEhkRN0bSuNJ5uAQBpCeec01SdsoIICmVu9WEcpEuanU8yA==/9cca7606cf5c15f4d2b0f737fa4503dc.jpg?errorImage=false"
+                            ]
+                        ]
+                    ]
                 ]
-            ]
+            ],
+            'max_tokens' => 300
+            
         );
 
         $data['messages'] = mb_convert_encoding($data['messages'], 'UTF-8', 'UTF-8');

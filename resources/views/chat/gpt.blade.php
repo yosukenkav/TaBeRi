@@ -25,8 +25,8 @@
                   <div class="flex"white-space: normal text-overflow: clip>
                     <form method="POST" enctype="multipart/form-data">
                         @csrf
-                        <!-- <textarea rows="10" cols="50" name="sentence">{{ isset($sentence) ? $sentence : '' }}</textarea>
-                         -->
+                        <!-- <textarea rows="10" cols="50" name="sentence">{{ isset($sentence) ? $sentence : '' }}</textarea> -->
+                        
                         <!-- <input type="text" id="prompt-input" placeholder="Enter a prompt" />     
                          URL“ü—ÍƒGƒŠƒA -->
                         <!-- <input type="text" id="url-input" placeholder="Enter a URL" />
