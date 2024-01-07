@@ -33,7 +33,7 @@ class DishController extends Controller
                 // バリデーション
         $validator = Validator::make($request->all(), [
             'weight' => 'required | numeric|min:0',
-            'protein_drinks' => 'required|integer|min:0|max:10',
+            'protein_drinks' => 'required|integer|min:0|max:20',
             'image_breakfast' => ['image', 'mimes:jpeg,png,jpg,gif'],
             'image_lunch' => ['image', 'mimes:jpeg,png,jpg,gif'],
             'image_dinner' => ['image', 'mimes:jpeg,png,jpg,gif'],
@@ -52,6 +52,19 @@ class DishController extends Controller
 
         // プロテイン1杯につき１０gとしてタンパク質量を計算
         $actualProteinAmount = $request->input('protein_drinks') * 10;
+
+        //理想のタンパク質量と実際の摂取量との比較
+        $proteinAmountJudge = NULL;//初期化
+
+        if($idealProteinAmount > $actualProteinAmount){
+            $proteinAmountJudge ='少ない';
+        }
+        elseif($idealProteinAmount == $actualProteinAmount){
+            $proteinAmountJudge ='ちょうど良い';
+        }
+        elseif($idealProteinAmount < $actualProteinAmount){
+            $proteinAmountJudge ='多い';
+        }
         
         $image = $request->file('image_breakfast');
         // 画像がアップロードされていれば、storageに保存
@@ -92,6 +105,7 @@ class DishController extends Controller
             'image_breakfast' => $path1[1],
             'image_lunch' => $path2[1],
             'image_dinner' => $path3[1],
+            'protein_amount_judge' => $proteinAmountJudge
         ]);
         // リダイレクト
         return redirect()->route('dish.index');
