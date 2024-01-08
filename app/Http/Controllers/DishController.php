@@ -143,4 +143,74 @@ class DishController extends Controller
         $result = Dish::find($id)->delete();
         return redirect()->route('dish.index');
     }
+    public function chat_2(Request $request)
+    {
+        // バリデーション
+        $request->validate([
+            'sentence' => 'required',
+        ]);
+
+        // 文章
+        $sentence = $request->input('sentence');
+
+        // ChatGPT API処理
+        $chat_response = $this->chat_gpt_2("日本語で応答してください", $sentence);
+
+        return view('dish.index', compact('sentence', 'chat_response'));
+    }
+          /**
+     * ChatGPT API呼び出し
+     * Laravel HTTP
+     */
+    function chat_gpt_2($system, $user)
+    {
+        // ChatGPT APIのエンドポイントURL
+        $url = "https://api.openai.com/v1/chat/completions";
+
+        // APIキー
+        $api_key = env('OPENAI_API_KEY');
+
+        // ヘッダー
+        $headers = array(
+            "Content-Type" => "application/json",
+            "Authorization" => "Bearer $api_key"
+        );
+
+        // パラメータ
+        $data = array(
+            "model" => "gpt-4-vision-preview",
+            "max_tokens" => 300,
+            'messages' => [
+                [
+                    'role' => 'user',
+                    'content' => [
+                        [
+                            'type' => 'text',
+                            'text' => "How many grams of protein is in the dish in this image?"
+                        ],
+                        [
+                            'type' => 'image_url',
+                            'image_url' => [
+                                'url' => "https://msp.c.yimg.jp/images/v2/FUTi93tXq405grZVGgDqGx5cm8knTLo61O84kVTxOan841a30-aIJSoqkmlQNsP4-Qv0KVqX9M9vYFUiwJk7TWC4I9M2xzEn4jfvB8Tnx5W1RMwvdTKvg5pjf-M3lAKmHoFWxcKsmDfi9rrcY3k9Jl4FRESWO_vYjdXJqrqpz_sXjGAMkpj2eUUXlg3t3iiuCITFF-aPUGdyfrOra1WB6yFBs9oPqOusD6743oMlUc8EQYcyjwsGR8PM50WvMuj0oRxh8zvNXiOK1yLgoAmUiXs3b3kBjpdMWKXK42gzUtovefhytAgJXJFtHL6ebGFMmAg7ww3zxs_v9R7mTm4VyTmXGkbipENC5DHA6WE5LAbJ2-Olp65OWTjxpRNR-KMvjyQLznaq2deDq1ohPfhnLSFBs9oPqOusD6743oMlUc8EQYcyjwsGR8PM50WvMuj0oRxh8zvNXiOK1yLgoAmUiWg3I0Sdvq9AMtRSJ6QbCubY55o1Ttb_VoLhot389aS3HoFWxcKsmDfi9rrcY3k9Jl4FRESWO_vYjdXJqrqpz_sXjGAMkpj2eUUXlg3t3iiug2TUWon14TQrPwboFlQOaA==/260px-Shoyu_ramen2C_at_Kasukabe_Station_282014.05.0529_1.jpg?errorImage=false"
+                            ]
+                        ]
+                    ]
+                ]
+            ],
+             
+        );
+        
+        
+
+        $data['messages'] = mb_convert_encoding($data['messages'], 'UTF-8', 'UTF-8');
+        $response = Http::withHeaders($headers)->post($url, $data);
+        
+        if ($response->json('error')) {
+            // エラー
+            return $response->json('error')['message'];
+        }
+
+        return $response->json('choices')[0]['message']['content'];
+    }
+
 }

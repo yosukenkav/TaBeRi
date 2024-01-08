@@ -15,6 +15,11 @@ use App\Http\Controllers\ChatController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+// Route::get('/dish', [DishController::class, 'index'])->name('dish.index');
+Route::post('/dish/create', [DishController::class, 'chat_2'])->name('dish.chat_2');
+
+// Route::get('/dish', [ChatController::class, 'index'])->name('chat.index');
+// Route::post('/dish/create', [ChatController::class, 'chat'])->name('chat.chat');
 
 Route::get('/chat', [ChatController::class, 'index'])->name('chat.index');
 Route::post('/chat', [ChatController::class, 'chat'])->name('chat.chat');
