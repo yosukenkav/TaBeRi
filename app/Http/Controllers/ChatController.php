@@ -107,18 +107,18 @@ class ChatController extends Controller
                     'content' => [
                         [
                             'type' => 'text',
-                            'text' => "‰æ‘œ‚É‚Í‰½‚ªŽÊ‚Á‚Ä‚¢‚Ü‚·‚©?"
+                            'text' => "‚±‚ê‚Í‰½‚Å‚·‚©H"
                         ],
                         [
                             'type' => 'image_url',
                             'image_url' => [
-                                'url' => "https://msp.c.yimg.jp/images/v2/FUTi93tXq405grZVGgDqGx5cm8knTLo61O84kVTxOan841a30-aIJSoqkmlQNsP4-Qv0KVqX9M9vYFUiwJk7TWC4I9M2xzEn4jfvB8Tnx5W1RMwvdTKvg5pjf-M3lAKmHoFWxcKsmDfi9rrcY3k9Jl4FRESWO_vYjdXJqrqpz_sXjGAMkpj2eUUXlg3t3iiuCITFF-aPUGdyfrOra1WB6yFBs9oPqOusD6743oMlUc8EQYcyjwsGR8PM50WvMuj0oRxh8zvNXiOK1yLgoAmUiXs3b3kBjpdMWKXK42gzUtovefhytAgJXJFtHL6ebGFMmAg7ww3zxs_v9R7mTm4VyTmXGkbipENC5DHA6WE5LAbJ2-Olp65OWTjxpRNR-KMvjyQLznaq2deDq1ohPfhnLSFBs9oPqOusD6743oMlUc8EQYcyjwsGR8PM50WvMuj0oRxh8zvNXiOK1yLgoAmUiWg3I0Sdvq9AMtRSJ6QbCubY55o1Ttb_VoLhot389aS3HoFWxcKsmDfi9rrcY3k9Jl4FRESWO_vYjdXJqrqpz_sXjGAMkpj2eUUXlg3t3iiug2TUWon14TQrPwboFlQOaA==/260px-Shoyu_ramen2C_at_Kasukabe_Station_282014.05.0529_1.jpg?errorImage=false"
+                                'url' => "https://msp.c.yimg.jp/images/v2/FUTi93tXq405grZVGgDqG9ue_Quma5tFs0mG052lIITpbnmW5ub2uxsMA3vVV7rBEk7Xgf2zSlOBszO421WRTW2l3tBIQ3GuhsxnRraQIJor28NtUl5FVN0XXNR-2n3Mv9qssVomL42ZYvsRDRUXFtXLR6zYpL2klkYTcvyW5jgtDhOH4zbQfXSJ_5CdwU4YQFK8fNTWtYXyDpJTJXQ0Aw==/6101-1311.JPG?errorImage=false"
                             ]
                         ]
                     ]
                 ]
             ],
-         'max_tokens' => 300   
+            'max_tokens' => 300
         );
         
 
