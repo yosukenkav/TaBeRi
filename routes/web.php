@@ -16,7 +16,7 @@ use App\Http\Controllers\ChatController;
 |
 */
 // Route::get('/dish', [DishController::class, 'index'])->name('dish.index');
-Route::post('/dish/create', [DishController::class, 'chat_2'])->name('dish.chat_2');
+// Route::post('/dish', [DishController::class, 'chat_2'])->name('dish.chat_2');
 
 // Route::get('/dish', [ChatController::class, 'index'])->name('chat.index');
 // Route::post('/dish/create', [ChatController::class, 'chat'])->name('chat.chat');

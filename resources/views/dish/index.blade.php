@@ -57,7 +57,7 @@
                     <td class="py-4 px-6 border-b border-gray-light dark:border-gray-600 dark:text-gray-200" white-space: nowrap>{{ $dish->actual_protein_amount }}</td>
                     <td class="py-4 px-6 border-b border-gray-light dark:border-gray-600 dark:text-gray-200" white-space: nowrap>{{ $dish->protein_amount_judge }}</td>
 
-                    <td>{{ isset($chat_response) ? $chat_response : '' }}</td>
+                    {{ isset($chat_response) ? $chat_response : '' }}
 
                   <div class="flex">
                     <!--更新ボタン-->

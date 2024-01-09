@@ -36,6 +36,10 @@
                 <label for="image" class="text-gray-700 dark:text-gray-300">夕食の画像:</label>
                 <input type="file" name="image_dinner" id="image_dinner" class="form-input" placeholder="画像をアップロードしてください" required>
             </div>
+            <div class="mb-4">
+                <textarea rows="10" cols="50" name="sentence">{{ isset($sentence) ? $sentence : '' }}</textarea>
+                <button type="submit">ChatGPT</button>
+            </div>
             
 
             <div class="flex items-center justify-end mt-4">
@@ -43,13 +47,7 @@
                 {{ __('登録') }}
               </x-primary-button>
             </div>
-          </form>
-          <form action="{{ route('dish.chat_2') }}" method="POST" enctype="multipart/form-data">
-            <div class="mb-4">
-                <textarea rows="10" cols="50" name="sentence">{{ isset($sentence) ? $sentence : '' }}</textarea>
-                <button type="submit">ChatGPT</button>
-            </div>
-          </form>
+          </form>    
         </div>
       </div>
     </div>
