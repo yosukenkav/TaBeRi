@@ -94,6 +94,13 @@ class ChatController extends Controller
         // APIキー
         $api_key = env('OPENAI_API_KEY');
 
+        // // Path to your image
+        // $imagePath = public_path('zQrve6h3X3aqe8dawj4lYfjbrxSkRQYHiSXNpkUY.jpg');
+
+        // // Getting the base64 string
+        // $base64Image = base64_encode($imagePath);
+        // ddd($base64Image);
+
         // ヘッダー
         $headers = array(
             "Content-Type" => "application/json",
@@ -113,16 +120,18 @@ class ChatController extends Controller
                     "role" => "user",
                     /*普通のChatGPTを使用するときはモデルを変え、この下のcontentのスラッシュを外し、
                     その下のcontentをメモ化する。その後gpt.blade.phpでチャット入力欄のスラッシュを外す*/
-                    "content" => $user
-                    // "content" => [
-                    //     ["type" => "text", "text" => "この画像には何が映っていますか？"],
-                    //     [
-                    //         "type" => "image_url",
-                    //         "image_url" => [
-                    //             "url" => "https://msp.c.yimg.jp/images/v2/FUTi93tXq405grZVGgDqGx5cm8knTLo61O84kVTxOan841a30-aIJSoqkmlQNsP4-Qv0KVqX9M9vYFUiwJk7TWC4I9M2xzEn4jfvB8Tnx5W1RMwvdTKvg5pjf-M3lAKmHoFWxcKsmDfi9rrcY3k9Jl4FRESWO_vYjdXJqrqpz_sXjGAMkpj2eUUXlg3t3iiuCITFF-aPUGdyfrOra1WB6yFBs9oPqOusD6743oMlUc8EQYcyjwsGR8PM50WvMuj0oRxh8zvNXiOK1yLgoAmUiXs3b3kBjpdMWKXK42gzUtovefhytAgJXJFtHL6ebGFMmAg7ww3zxs_v9R7mTm4VyTmXGkbipENC5DHA6WE5LAbJ2-Olp65OWTjxpRNR-KMvjyQLznaq2deDq1ohPfhnLSFBs9oPqOusD6743oMlUc8EQYcyjwsGR8PM50WvMuj0oRxh8zvNXiOK1yLgoAmUiWg3I0Sdvq9AMtRSJ6QbCubY55o1Ttb_VoLhot389aS3HoFWxcKsmDfi9rrcY3k9Jl4FRESWO_vYjdXJqrqpz_sXjGAMkpj2eUUXlg3t3iiug2TUWon14TQrPwboFlQOaA==/260px-Shoyu_ramen2C_at_Kasukabe_Station_282014.05.0529_1.jpg?errorImage=false",
-                    //         ],
-                    //     ],
-                    // ],
+                    // "content" => $user
+                    "content" => [
+                        ["type" => "text", "text" => "Predict the protein content of the food in this image. Please answer with only numbers and do not include '~'."],
+                        //Predict the protein content of the food in this image. Please answer with only numbers and do not include '~'.
+                        // ['type' => 'image', 'image' => $base64Image],
+                         [
+                            "type" => "image_url",
+                            "image_url" => [
+                                "url" => "https://msp.c.yimg.jp/images/v2/FUTi93tXq405grZVGgDqG3jb8zlkUnMmwCW3cMlg1cPjfEP_Y2tjCp4oct3h_8muoS-IBVASA-l7vYsxsVp18N93HqCzO4O-jVjrkrI3VyWWoufyTqqcDmb63QvdDis9H7-e5Kv_LNZfdfF3AsYD52l07nYXsqJu7to07QFUXTliqN2PYSGupXQjBOkFgmDNtyDbB9gY9p8FwEd_mtjVUPQkXC_TEaQY6nJSNPGvaoJq4ghxsC6HYl7CCQgPmCVsidoOTIiBdsbrSGLIwMJqtQ==/S20080225020002A_000.png?errorImage=false",
+                            ],
+                        ],
+                    ],
                 ]
             ]
              
@@ -140,4 +149,9 @@ class ChatController extends Controller
 
         return $response->json('choices')[0]['message']['content'];
     }
+    //  public function encodeImage($imagePath)
+    // {
+    //     $imageData = base64_encode($imagePath);
+    //     return  $imageData;
+    // }
 }

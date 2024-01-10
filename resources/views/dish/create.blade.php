@@ -36,10 +36,10 @@
                 <label for="image" class="text-gray-700 dark:text-gray-300">夕食の画像:</label>
                 <input type="file" name="image_dinner" id="image_dinner" class="form-input" placeholder="画像をアップロードしてください" required>
             </div>
-            <div class="mb-4">
+            <!-- <div class="mb-4">
                 <textarea rows="10" cols="50" name="sentence">{{ isset($sentence) ? $sentence : '' }}</textarea>
                 <button type="submit">ChatGPT</button>
-            </div>
+            </div> -->
             
 
             <div class="flex items-center justify-end mt-4">

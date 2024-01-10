@@ -15,9 +15,9 @@
             <thead>
               <tr>
                  <th class="py-4 px-6 bg-gray-lightest dark:bg-gray-darkest font-bold text-lg text-gray-dark dark:text-gray-200 border-b border-grey-light dark:border-grey-dark">体重(kg)</th>
-                 <th class="py-4 px-6 bg-gray-lightest dark:bg-gray-darkest font-bold uppercase text-lg text-gray-dark dark:text-gray-200 border-b border-grey-light dark:border-grey-dark" white-space: nowrap>朝食画像</th>
-                 <th class="py-4 px-6 bg-gray-lightest dark:bg-gray-darkest font-bold uppercase text-lg text-gray-dark dark:text-gray-200 border-b border-grey-light dark:border-grey-dark" white-space: nowrap>昼食画像</th>
-                 <th class="py-4 px-6 bg-gray-lightest dark:bg-gray-darkest font-bold uppercase text-lg text-gray-dark dark:text-gray-200 border-b border-grey-light dark:border-grey-dark" white-space: nowrap>夕食画像</th>
+                 <th class="py-4 px-6 bg-gray-lightest dark:bg-gray-darkest font-bold  text-lg text-gray-dark dark:text-gray-200 border-b border-grey-light dark:border-grey-dark" white-space: nowrap>朝食(タンパク質量:g)</th>
+                 <th class="py-4 px-6 bg-gray-lightest dark:bg-gray-darkest font-bold  text-lg text-gray-dark dark:text-gray-200 border-b border-grey-light dark:border-grey-dark" white-space: nowrap>昼食(タンパク質量:g)</th>
+                 <th class="py-4 px-6 bg-gray-lightest dark:bg-gray-darkest font-bold  text-lg text-gray-dark dark:text-gray-200 border-b border-grey-light dark:border-grey-dark" white-space: nowrap>夕食(タンパク質量:g)</th>
                  <th class="py-4 px-6 bg-gray-lightest dark:bg-gray-darkest font-bold uppercase text-lg text-gray-dark dark:text-gray-200 border-b border-grey-light dark:border-grey-dark"white-space: >プロテイン(杯数)</th>
                  <th class="py-4 px-6 bg-gray-lightest dark:bg-gray-darkest font-bold text-lg text-gray-dark dark:text-gray-200 border-b border-grey-light dark:border-grey-dark"white-space: >理想的なタンパク質摂取量(g)</th>
                  <th class="py-4 px-6 bg-gray-lightest dark:bg-gray-darkest font-bold text-lg text-gray-dark dark:text-gray-200 border-b border-grey-light dark:border-grey-dark"white-space: >タンパク質摂取量(g)</th>
@@ -36,6 +36,7 @@
                                     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
                                     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/js/lightbox.min.js" type="text/javascript"></script>
                                     <a href="{{ Storage::url($dish->image_breakfast) }}" data-lightbox="group"><img src="{{ Storage::url($dish->image_breakfast) }}" style="display: block; margin: auto;" width="25%"></a>
+                                    <!-- <p>6.28g</p> -->
 
                     </td>
                     <td class="py-4 px-6 border-b border-gray-light dark:border-gray-600">
@@ -43,6 +44,7 @@
                                     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
                                     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/js/lightbox.min.js" type="text/javascript"></script>
                                     <a href="{{ Storage::url($dish->image_lunch) }}" data-lightbox="group"><img src="{{ Storage::url($dish->image_lunch) }}" style="display: block; margin: auto;" width="25%"></a>
+                                    
 
                     </td>
                     <td class="py-4 px-6 border-b border-gray-light dark:border-gray-600">
@@ -50,12 +52,15 @@
                                     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
                                     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/js/lightbox.min.js" type="text/javascript"></script>
                                     <a href="{{ Storage::url($dish->image_dinner) }}" data-lightbox="group"><img src="{{ Storage::url($dish->image_dinner) }}" style="display: block; margin: auto;" width="25%"></a>
+                                    
 
                     </td>
                     <td class="py-4 px-6 border-b border-gray-light dark:border-gray-600 dark:text-gray-200" white-space: nowrap>{{$dish->protein_drinks}}</td>
                     <td class="py-4 px-6 border-b border-gray-light dark:border-gray-600 dark:text-gray-200" white-space: nowrap>{{ $dish->ideal_protein_amount }}</td>
-                    <td class="py-4 px-6 border-b border-gray-light dark:border-gray-600 dark:text-gray-200" white-space: nowrap>{{ $dish->actual_protein_amount }}</td>
+                    <td class="py-4 px-6 border-b border-gray-light dark:border-gray-600 dark:text-gray-200" white-space: nowrap>{{ $dish->actual_protein_amount_d }} </td>
                     <td class="py-4 px-6 border-b border-gray-light dark:border-gray-600 dark:text-gray-200" white-space: nowrap>{{ $dish->protein_amount_judge }}</td>
+                    
+                    
 
                     {{ isset($chat_response) ? $chat_response : '' }}
 
