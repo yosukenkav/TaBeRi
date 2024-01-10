@@ -11,18 +11,19 @@
     <div class="max-w-7xl mx-auto sm:w-10/12 md:w-8/10 lg:w-8/12">
       <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
         <div class="p-6 bg-white dark:bg-gray-800 border-b border-grey-200 dark:border-gray-800">
+          <div style="overflow-x: auto;">
           <table class="text-center w-full border-collapse">
             <thead>
               <tr>
-                 <th class="py-4 px-6 bg-gray-lightest dark:bg-gray-darkest font-bold text-lg text-gray-dark dark:text-gray-200 border-b border-grey-light dark:border-grey-dark">体重(kg)</th>
-                 <th class="py-4 px-6 bg-gray-lightest dark:bg-gray-darkest font-bold  text-lg text-gray-dark dark:text-gray-200 border-b border-grey-light dark:border-grey-dark" >朝食(タンパク質量:g)</th>
-                 <th class="py-4 px-6 bg-gray-lightest dark:bg-gray-darkest font-bold  text-lg text-gray-dark dark:text-gray-200 border-b border-grey-light dark:border-grey-dark" >昼食(タンパク質量:g)</th>
-                 <th class="py-4 px-6 bg-gray-lightest dark:bg-gray-darkest font-bold  text-lg text-gray-dark dark:text-gray-200 border-b border-grey-light dark:border-grey-dark" >夕食(タンパク質量:g)</th>
-                 <th class="py-4 px-6 bg-gray-lightest dark:bg-gray-darkest font-bold uppercase text-lg text-gray-dark dark:text-gray-200 border-b border-grey-light dark:border-grey-dark"white-space: >プロテイン(杯数)</th>
-                 <th class="py-4 px-6 bg-gray-lightest dark:bg-gray-darkest font-bold text-lg text-gray-dark dark:text-gray-200 border-b border-grey-light dark:border-grey-dark"white-space: >理想的なタンパク質摂取量(g)</th>
-                 <th class="py-4 px-6 bg-gray-lightest dark:bg-gray-darkest font-bold text-lg text-gray-dark dark:text-gray-200 border-b border-grey-light dark:border-grey-dark"white-space: >タンパク質摂取量(g)</th>
-                 <th class="py-4 px-6 bg-gray-lightest dark:bg-gray-darkest font-bold text-lg text-gray-dark dark:text-gray-200 border-b border-grey-light dark:border-grey-dark"white-space: >判定</th>
-                 <th class="py-4 px-6 bg-gray-lightest dark:bg-gray-darkest font-bold text-lg text-gray-dark dark:text-gray-200 border-b border-grey-light dark:border-grey-dark"white-space: >回答</th>
+                 <th class="py-4 px-6 bg-gray-lightest dark:bg-gray-darkest font-bold text-lg text-gray-dark dark:text-gray-200 border-b border-grey-light dark:border-grey-dark"white-space: nowrap>体重(kg)</th>
+                 <th class="py-4 px-6 bg-gray-lightest dark:bg-gray-darkest font-bold  text-lg text-gray-dark dark:text-gray-200 border-b border-grey-light dark:border-grey-dark"white-space: nowrap >朝食(タンパク質量:g)</th>
+                 <th class="py-4 px-6 bg-gray-lightest dark:bg-gray-darkest font-bold  text-lg text-gray-dark dark:text-gray-200 border-b border-grey-light dark:border-grey-dark"white-space: nowrap >昼食(タンパク質量:g)</th>
+                 <th class="py-4 px-6 bg-gray-lightest dark:bg-gray-darkest font-bold  text-lg text-gray-dark dark:text-gray-200 border-b border-grey-light dark:border-grey-dark"white-space: nowrap >夕食(タンパク質量:g)</th>
+                 <th class="py-4 px-6 bg-gray-lightest dark:bg-gray-darkest font-bold uppercase text-lg text-gray-dark dark:text-gray-200 border-b border-grey-light dark:border-grey-dark"white-space: nowrap>プロテイン(杯数)</th>
+                 <th class="py-4 px-6 bg-gray-lightest dark:bg-gray-darkest font-bold text-lg text-gray-dark dark:text-gray-200 border-b border-grey-light dark:border-grey-dark"white-space: nowrap>理想的なタンパク質摂取量(g)</th>
+                 <th class="py-4 px-6 bg-gray-lightest dark:bg-gray-darkest font-bold text-lg text-gray-dark dark:text-gray-200 border-b border-grey-light dark:border-grey-dark"white-space: nowrap>タンパク質摂取量(g)</th>
+                 <th class="py-4 px-6 bg-gray-lightest dark:bg-gray-darkest font-bold text-lg text-gray-dark dark:text-gray-200 border-b border-grey-light dark:border-grey-dark"white-space: nowrap>判定</th>
+                 <th class="py-4 px-6 bg-gray-lightest dark:bg-gray-darkest font-bold text-lg text-gray-dark dark:text-gray-200 border-b border-grey-light dark:border-grey-dark"white-space: nowrap>回答</th>
                  
 
 
@@ -87,6 +88,7 @@
               @endforeach
             </tbody>
           </table>
+          </div>
         </div>
       </div>
     </div>
