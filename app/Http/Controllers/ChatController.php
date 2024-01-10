@@ -94,11 +94,13 @@ class ChatController extends Controller
         // APIキー
         $api_key = env('OPENAI_API_KEY');
 
-        // // Path to your image
-        // $imagePath = public_path('zQrve6h3X3aqe8dawj4lYfjbrxSkRQYHiSXNpkUY.jpg');
+        // Path to your image
+        //もともとは$imagePath = public_path('image_path');でこれだと、TaBeRi/public(公開ディレクトリ)に画像が無いとエラーになる。
+        //storage_path('app/public/' とすることで、storage/app/publicのファイルの絶対パスが取得できる。
+        $imagePath = storage_path('app/public/'.'BiUh2HfSEjZ13dCH8ubQfYGbXLIBYS8SParhl3TZ.jpg');
 
-        // // Getting the base64 string
-        // $base64Image = base64_encode($imagePath);
+        // Getting the base64 string
+        $base64Image = base64_encode(file_get_contents($imagePath));
         // ddd($base64Image);
 
         // ヘッダー
@@ -122,13 +124,13 @@ class ChatController extends Controller
                     その下のcontentをメモ化する。その後gpt.blade.phpでチャット入力欄のスラッシュを外す*/
                     // "content" => $user
                     "content" => [
-                        ["type" => "text", "text" => "Predict the protein content of the food in this image. Please answer with only numbers and do not include '~'."],
+                        ["type" => "text", "text" => "What is in the image?"],
                         //Predict the protein content of the food in this image. Please answer with only numbers and do not include '~'.
                         // ['type' => 'image', 'image' => $base64Image],
                          [
                             "type" => "image_url",
                             "image_url" => [
-                                "url" => "https://msp.c.yimg.jp/images/v2/FUTi93tXq405grZVGgDqG3jb8zlkUnMmwCW3cMlg1cPjfEP_Y2tjCp4oct3h_8muoS-IBVASA-l7vYsxsVp18N93HqCzO4O-jVjrkrI3VyWWoufyTqqcDmb63QvdDis9H7-e5Kv_LNZfdfF3AsYD52l07nYXsqJu7to07QFUXTliqN2PYSGupXQjBOkFgmDNtyDbB9gY9p8FwEd_mtjVUPQkXC_TEaQY6nJSNPGvaoJq4ghxsC6HYl7CCQgPmCVsidoOTIiBdsbrSGLIwMJqtQ==/S20080225020002A_000.png?errorImage=false",
+                                "url" => "data:image/jpeg;base64,{$base64Image}",
                             ],
                         ],
                     ],

@@ -15,13 +15,14 @@
             <thead>
               <tr>
                  <th class="py-4 px-6 bg-gray-lightest dark:bg-gray-darkest font-bold text-lg text-gray-dark dark:text-gray-200 border-b border-grey-light dark:border-grey-dark">体重(kg)</th>
-                 <th class="py-4 px-6 bg-gray-lightest dark:bg-gray-darkest font-bold  text-lg text-gray-dark dark:text-gray-200 border-b border-grey-light dark:border-grey-dark" white-space: nowrap>朝食(タンパク質量:g)</th>
-                 <th class="py-4 px-6 bg-gray-lightest dark:bg-gray-darkest font-bold  text-lg text-gray-dark dark:text-gray-200 border-b border-grey-light dark:border-grey-dark" white-space: nowrap>昼食(タンパク質量:g)</th>
-                 <th class="py-4 px-6 bg-gray-lightest dark:bg-gray-darkest font-bold  text-lg text-gray-dark dark:text-gray-200 border-b border-grey-light dark:border-grey-dark" white-space: nowrap>夕食(タンパク質量:g)</th>
+                 <th class="py-4 px-6 bg-gray-lightest dark:bg-gray-darkest font-bold  text-lg text-gray-dark dark:text-gray-200 border-b border-grey-light dark:border-grey-dark" >朝食(タンパク質量:g)</th>
+                 <th class="py-4 px-6 bg-gray-lightest dark:bg-gray-darkest font-bold  text-lg text-gray-dark dark:text-gray-200 border-b border-grey-light dark:border-grey-dark" >昼食(タンパク質量:g)</th>
+                 <th class="py-4 px-6 bg-gray-lightest dark:bg-gray-darkest font-bold  text-lg text-gray-dark dark:text-gray-200 border-b border-grey-light dark:border-grey-dark" >夕食(タンパク質量:g)</th>
                  <th class="py-4 px-6 bg-gray-lightest dark:bg-gray-darkest font-bold uppercase text-lg text-gray-dark dark:text-gray-200 border-b border-grey-light dark:border-grey-dark"white-space: >プロテイン(杯数)</th>
                  <th class="py-4 px-6 bg-gray-lightest dark:bg-gray-darkest font-bold text-lg text-gray-dark dark:text-gray-200 border-b border-grey-light dark:border-grey-dark"white-space: >理想的なタンパク質摂取量(g)</th>
                  <th class="py-4 px-6 bg-gray-lightest dark:bg-gray-darkest font-bold text-lg text-gray-dark dark:text-gray-200 border-b border-grey-light dark:border-grey-dark"white-space: >タンパク質摂取量(g)</th>
                  <th class="py-4 px-6 bg-gray-lightest dark:bg-gray-darkest font-bold text-lg text-gray-dark dark:text-gray-200 border-b border-grey-light dark:border-grey-dark"white-space: >判定</th>
+                 <th class="py-4 px-6 bg-gray-lightest dark:bg-gray-darkest font-bold text-lg text-gray-dark dark:text-gray-200 border-b border-grey-light dark:border-grey-dark"white-space: >回答</th>
                  
 
 
@@ -59,6 +60,7 @@
                     <td class="py-4 px-6 border-b border-gray-light dark:border-gray-600 dark:text-gray-200" white-space: nowrap>{{ $dish->ideal_protein_amount }}</td>
                     <td class="py-4 px-6 border-b border-gray-light dark:border-gray-600 dark:text-gray-200" white-space: nowrap>{{ $dish->actual_protein_amount_d }} </td>
                     <td class="py-4 px-6 border-b border-gray-light dark:border-gray-600 dark:text-gray-200" white-space: nowrap>{{ $dish->protein_amount_judge }}</td>
+                    <td class="py-4 px-6 border-b border-gray-light dark:border-gray-600 dark:text-gray-200" >{{ $dish->answer }}</td>
                     
                     
 
