@@ -9,6 +9,13 @@ use Illuminate\Support\Facades\Http;
 
 class DishController extends Controller
 {
+    private $path1 = null;
+    private $path2 = null;
+    private $path3 = null;
+    private $pathNumber = 0;
+    private $protein_breakfast = null;
+    private $protein_lunch = null;
+    private $protein_dinner = null;
     /**
      * Display a listing of the resource.
      */
@@ -53,7 +60,38 @@ class DishController extends Controller
 
         // プロテイン1杯につき１０gとしてタンパク質量を計算
         $actualProteinAmount = $request->input('protein_drinks') * 10;
-        $actualProteinAmountD = $request->input('protein_drinks') * 10;
+        
+        $image = $request->file('image_breakfast');
+        // 画像がアップロードされていれば、storageに保存
+        if ($request->hasFile('image_breakfast')) {
+            $path = \Storage::put('/public', $image);
+            $this->path1 = explode('/', $path)[1];
+            //$pathNumberに画像のパス今回なら$path1の1を代入こうすることでchat_gpt_2メソッドで$path1~$path3を見分けられるようにしている。
+            $this ->pathNumber = 1;
+            // chat_2 メソッドを呼び出す
+            $this->protein_breakfast = $this-> chat_2($request); 
+        }
+        
+        $image = $request->file('image_lunch');
+        // 画像がアップロードされていれば、storageに保存
+        if ($request->hasFile('image_lunch')) {
+            $path = \Storage::put('/public', $image);
+            $this->path2 = explode('/', $path)[1];
+            $this ->pathNumber = 2;
+            $this->protein_lunch = $this-> chat_2($request);
+        }
+
+        $image = $request->file('image_dinner');
+        // 画像がアップロードされていれば、storageに保存
+        if ($request->hasFile('image_dinner')) {
+            $path = \Storage::put('/public', $image);
+            $this->path3 = explode('/', $path)[1];
+            $this ->pathNumber = 3;
+            $this->protein_dinner = $this-> chat_2($request);
+        }
+        
+        //その日に摂取したタンパク質量の計算
+        $actualProteinAmountD = $request->input('protein_drinks') * 10 + ($this -> protein_breakfast) + ($this -> protein_lunch) + ($this -> protein_dinner);
 
         //理想のタンパク質量と実際の摂取量との比較
         $proteinAmountJudge = NULL;//初期化
@@ -67,53 +105,32 @@ class DishController extends Controller
         elseif($idealProteinAmount < $actualProteinAmount or $idealProteinAmount < $actualProteinAmountD){
             $proteinAmountJudge ='多い';
         }
-        
-        $image = $request->file('image_breakfast');
-        // 画像がアップロードされていれば、storageに保存
-        if ($request->hasFile('image_breakfast')) {
-            $path1 = \Storage::put('/public', $image);
-            $path1 = explode('/', $path1);
-            session(['path_breakfast' => $path1]);
-        }
-        
-        $image = $request->file('image_lunch');
-        // 画像がアップロードされていれば、storageに保存
-        if ($request->hasFile('image_lunch')) {
-            $path2 = \Storage::put('/public', $image);
-            $path2 = explode('/', $path2);
-        }
-        $image = $request->file('image_dinner');
-        // 画像がアップロードされていれば、storageに保存
-        if ($request->hasFile('image_dinner')) {
-            $path3 = \Storage::put('/public', $image);
-            $path3 = explode('/', $path3);
-        }
-        
-         // chat_2 メソッドを呼び出す
-        $answer = $this-> chat_2($request);
+         
 
         $dish = $request->all();
         //$user = Auth::user()->id;        // ログインユーザーのIDを取得
         //$dish['user_id'] = $user;
-        $dish['image_breakfast'] = $path1[1];
-        $dish['image_lunch'] = $path2[1];
-        $dish['image_dinner'] = $path3[1];  //$path[0] はディレクトリ、$path[1] はファイル名
+        $dish['image_breakfast'] = $this->path1;
+        $dish['image_lunch'] = $this->path2;
+        $dish['image_dinner'] = $this->path3;  //$path[0] はディレクトリ、$path[1] はファイル名
         //Dish::create($dish);
 
 
-        // create()�͍ŏ�����p�ӂ���Ă���֐�
-        // �߂�l�͑}�����ꂽ���R�[�h�̏��
+        
         $result = Dish::create([
             'weight' => $request->input('weight'),
             'protein_drinks' => $request->input('protein_drinks'),
             'ideal_protein_amount' => $idealProteinAmount, 
             'actual_protein_amount' => $actualProteinAmount,
             'actual_protein_amount_d' => $actualProteinAmountD,
-            'image_breakfast' => $path1[1],
-            'image_lunch' => $path2[1],
-            'image_dinner' => $path3[1],
+            'image_breakfast' => $this->path1,
+            'image_lunch' => $this->path2,
+            'image_dinner' => $this->path3,
             'protein_amount_judge' => $proteinAmountJudge,
-            'answer' => $answer,
+            // 'answer' => $answer,
+            'protein_breakfast' => $this->protein_breakfast,
+            'protein_lunch' => $this->protein_lunch,
+            'protein_dinner' => $this->protein_dinner,
         ]);
        
         // リダイレクト
@@ -182,12 +199,14 @@ class DishController extends Controller
         // APIキー
         $api_key = env('OPENAI_API_KEY');
 
-        $path_breakfast = session('path_breakfast');
+        // $path_breakfast = session('path_breakfast');
 
         // Path to your image
         //もともとは$imagePath = public_path('image_path');でこれだと、TaBeRi/public(公開ディレクトリ)に画像が無いとエラーになる。
         //storage_path('app/public/' とすることで、storage/app/publicのファイルの絶対パスが取得できる。
-        $imagePath = storage_path('app/public/'. $path_breakfast);
+        //$this->{ "path{$this->pathNumber}"}のところは朝昼晩のそれぞれ違う画像のパスを読み込むために$pathNumberを定義し画像が登録される時点で数字を$pathNumberに代入させている
+        //↑これを実現する事で関数を定義する場所（関数の内か外か）や呼び出し方（$this）を学んだ。
+        $imagePath = storage_path('app/public/'. $this->{ "path{$this->pathNumber}"});
 
         // Getting the base64 string
         $base64Image = base64_encode(file_get_contents($imagePath));
@@ -213,14 +232,14 @@ class DishController extends Controller
                     その下のcontentをメモ化する。その後gpt.blade.phpでチャット入力欄のスラッシュを外す*/
                     // "content" => $user
                     "content" => [
-                        ["type" => "text", "text" => "この画像には何が映っていますか？"],
+                        ["type" => "text", "text" => "Predict the protein content of the food in this image. Please answer with only numbers and do not include '~'."],
                         [
                             "type" => "image_url",
                             "image_url" => [
                                 "url" => "data:image/jpeg;base64,{$base64Image}",
                             ],
                         ],
-                    ],
+                    ],         
                 ]
             ]
 
