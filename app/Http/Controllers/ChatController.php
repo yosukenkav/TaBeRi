@@ -94,15 +94,7 @@ class ChatController extends Controller
         // APIキー
         $api_key = env('OPENAI_API_KEY');
 
-        // Path to your image
-        //もともとは$imagePath = public_path('image_path');でこれだと、TaBeRi/public(公開ディレクトリ)に画像が無いとエラーになる。
-        //storage_path('app/public/' とすることで、storage/app/publicのファイルの絶対パスが取得できる。
-        $imagePath = storage_path('app/public/'.'BiUh2HfSEjZ13dCH8ubQfYGbXLIBYS8SParhl3TZ.jpg');
-
-        // Getting the base64 string
-        $base64Image = base64_encode(file_get_contents($imagePath));
-        // ddd($base64Image);
-
+        
         // ヘッダー
         $headers = array(
             "Content-Type" => "application/json",
@@ -122,18 +114,16 @@ class ChatController extends Controller
                     "role" => "user",
                     /*普通のChatGPTを使用するときはモデルを変え、この下のcontentのスラッシュを外し、
                     その下のcontentをメモ化する。その後gpt.blade.phpでチャット入力欄のスラッシュを外す*/
-                    // "content" => $user
-                    "content" => [
-                        ["type" => "text", "text" => "What is in the image?"],
-                        //Predict the protein content of the food in this image. Please answer with only numbers and do not include '~'.
-                        // ['type' => 'image', 'image' => $base64Image],
-                         [
-                            "type" => "image_url",
-                            "image_url" => [
-                                "url" => "data:image/jpeg;base64,{$base64Image}",
-                            ],
-                        ],
-                    ],
+                    "content" => $user
+                    // "content" => [
+                    //     ["type" => "text", "text" => "この画像には何が映っていますか？"],
+                    //     [
+                    //         "type" => "image_url",
+                    //         "image_url" => [
+                    //             "url" => "https://msp.c.yimg.jp/images/v2/FUTi93tXq405grZVGgDqGx5cm8knTLo61O84kVTxOan841a30-aIJSoqkmlQNsP4-Qv0KVqX9M9vYFUiwJk7TWC4I9M2xzEn4jfvB8Tnx5W1RMwvdTKvg5pjf-M3lAKmHoFWxcKsmDfi9rrcY3k9Jl4FRESWO_vYjdXJqrqpz_sXjGAMkpj2eUUXlg3t3iiuCITFF-aPUGdyfrOra1WB6yFBs9oPqOusD6743oMlUc8EQYcyjwsGR8PM50WvMuj0oRxh8zvNXiOK1yLgoAmUiXs3b3kBjpdMWKXK42gzUtovefhytAgJXJFtHL6ebGFMmAg7ww3zxs_v9R7mTm4VyTmXGkbipENC5DHA6WE5LAbJ2-Olp65OWTjxpRNR-KMvjyQLznaq2deDq1ohPfhnLSFBs9oPqOusD6743oMlUc8EQYcyjwsGR8PM50WvMuj0oRxh8zvNXiOK1yLgoAmUiWg3I0Sdvq9AMtRSJ6QbCubY55o1Ttb_VoLhot389aS3HoFWxcKsmDfi9rrcY3k9Jl4FRESWO_vYjdXJqrqpz_sXjGAMkpj2eUUXlg3t3iiug2TUWon14TQrPwboFlQOaA==/260px-Shoyu_ramen2C_at_Kasukabe_Station_282014.05.0529_1.jpg?errorImage=false",
+                    //         ],
+                    //     ],
+                    // ],
                 ]
             ]
              

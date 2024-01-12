@@ -58,8 +58,8 @@ class DishController extends Controller
         // 体重を1.4倍した理想的タンパク質量を計算
         $idealProteinAmount = $request->input('weight') * 1.4;
 
-        // プロテイン1杯につき１０gとしてタンパク質量を計算
-        $actualProteinAmount = $request->input('protein_drinks') * 10;
+        
+        $actualProteinAmount = 0;
         
         $image = $request->file('image_breakfast');
         // 画像がアップロードされていれば、storageに保存
@@ -91,19 +91,32 @@ class DishController extends Controller
         }
         
         //その日に摂取したタンパク質量の計算
-        $actualProteinAmountD = $request->input('protein_drinks') * 10 + ($this -> protein_breakfast) + ($this -> protein_lunch) + ($this -> protein_dinner);
+        $actualProteinAmountD = $request->input('protein_drinks') * 20 + ($this -> protein_breakfast) + ($this -> protein_lunch) + ($this -> protein_dinner);
 
         //理想のタンパク質量と実際の摂取量との比較
         $proteinAmountJudge = NULL;//初期化
+        $proteinAmountKabusoku = 0;
 
-        if($idealProteinAmount > $actualProteinAmount or $idealProteinAmount > $actualProteinAmountD ){
-            $proteinAmountJudge ='少ない';
+        if($idealProteinAmount > $actualProteinAmountD ){
+            $proteinAmountKabusoku = $idealProteinAmount-$actualProteinAmountD ;
+                if($proteinAmountKabusoku<10){
+                    $proteinAmountJudge =$proteinAmountKabusoku.'g 少ないです。補う為にゆで卵や納豆を食べてみませんか？';
+                }
+                elseif($proteinAmountKabusoku >=10 and $proteinAmountKabusoku < 20){
+                    $proteinAmountJudge =$proteinAmountKabusoku.'g 少ないです。鮭や鶏のむね肉、もも肉のいずれか100gを食べてみませんか？プロテインドリンクを飲むのもおすすめです!';
+                }
+                elseif($proteinAmountKabusoku >=20 ){
+                    $proteinAmountJudge =$proteinAmountKabusoku.'g 少ないです。およそ一食分足りません。肉類(例：豚肉、鶏肉、牛肉)、魚介類(例：鮭、エビ、ムール貝)、大豆製品などの食材を組み合わせた高タンパクでバランスの取れた食事を心がけることで足りないタンパク質を摂取できます。';
+                }
+            
+            // $answer ='';
         }
-        elseif($idealProteinAmount == $actualProteinAmount or $idealProteinAmount == $actualProteinAmountD){
-            $proteinAmountJudge ='ちょうど良い';
+        elseif($idealProteinAmount == $actualProteinAmountD){
+            $proteinAmountJudge ='ちょうど良い量です。すごいですね！';
         }
-        elseif($idealProteinAmount < $actualProteinAmount or $idealProteinAmount < $actualProteinAmountD){
-            $proteinAmountJudge ='多い';
+        elseif($idealProteinAmount < $actualProteinAmountD){
+            $proteinAmountKabusoku = $actualProteinAmountD - $idealProteinAmount;
+            $proteinAmountJudge =$proteinAmountKabusoku.'g 多いです。タンパク質の取り過ぎは胃腸の不調や消化不良に繋がることがあります。また身体が吸収できずに排出されてしまいます。';
         }
          
 
