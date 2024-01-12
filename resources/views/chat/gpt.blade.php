@@ -3,7 +3,7 @@
 <x-app-layout>
   <x-slot name="header">
     <h2 class="font-semibold text-xl text-gray-800 leading-tight dark:text-gray-200">
-      {{ __('chat Index') }}
+      {{ __('ChatGPT„Ç≥„Éº„Éä„Éº') }}
     </h2>
   </x-slot>
 
@@ -14,34 +14,36 @@
           <table class="text-center w-full border-collapse">
             <thead>
               <tr>
-                <th class="py-4 px-6 bg-gray-lightest dark:bg-gray-darkest font-bold uppercase text-lg text-gray-dark dark:text-gray-200 border-b border-grey-light dark:border-grey-dark">chat</th>
+                <th class="py-4 px-6 bg-gray-lightest dark:bg-gray-darkest font-bold  text-lg text-gray-dark dark:text-gray-200 border-b border-grey-light dark:border-grey-dark">ChatGPT„ÅßË≥™Âïè„Åó„Çà„ÅÜ</th>
               </tr>
             </thead>
             <tbody>
               
               <tr class="hover:bg-gray-lighter">
-                <td class="py-4 px-6 border-b border-gray-light dark:border-gray-600"white-space: normal text-overflow: clip>
+                <td class="py-4 px-6 border-b border-gray-light dark:border-gray-600">
                  
-                  <div class="flex"white-space: normal text-overflow: clip>
-                    <form method="POST" enctype="multipart/form-data">
+                  <div class="flex ">
+                    <form method="POST" enctype="multipart/form-data" class="flex">
                         @csrf
-                        <textarea rows="10" cols="50" name="sentence">{{ isset($sentence) ? $sentence : '' }}</textarea>
+                        <textarea rows="10" cols="50" name="sentence" class="mr-2 rounded-lg border border-gray-300 p-2">{{ isset($sentence) ? $sentence : '' }}</textarea>                      
+                          <div class="flex items-center ">
+                              <x-primary-button class="ml-3 flex items-center  bg-orange-500 hover:bg-orange-700 text-white px-4 py-2 rounded">
+                                <svg class="h-6 w-6 flex items-center  " fill="none" viewBox="0 0 24 24" stroke="white">
+                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5" />
+                                </svg>
+                              </x-primary-button>
+                          </div>
                         
-                        <!-- <input type="text" id="prompt-input" placeholder="Enter a prompt" />     
-                         URLì¸óÕÉGÉäÉA -->
-                        <!-- <input type="text" id="url-input" placeholder="Enter a URL" />
-                        <button type="submit">Generate</button>
-        -->
-                        <button type="submit">ChatGPT</button>
+                         <!-- <button type="submit">ChatGPT</button> -->
+                         {{-- ÁµêÊûú --}}
+                    {{ isset($chat_response) ? $chat_response : '' }}
                     </form>
                     <!-- <div id="vision-container"></div> -->
-
-                    {{-- åãâ  --}}
-                    {{ isset($chat_response) ? $chat_response : '' }}
                   </div>
+                  
                 </td>
-              </tr>
-              
+                
+              </tr>      
             </tbody>
           </table>
         </div>

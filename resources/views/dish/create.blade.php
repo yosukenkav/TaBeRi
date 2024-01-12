@@ -16,11 +16,11 @@
             @csrf
             <div class="form-group">
                 <label for="weight" class="text-gray-700 dark:text-gray-300">体重（kg）:</label>
-                <input type="number" step="any" class="form-control" id="weight" name="weight" required>
+                <input type="number" step="any" class="form-control rounded-md" id="weight" name="weight" required>
             </div>
             <div class="form-group">
                 <label for="protein_drinks" class="text-gray-700 dark:text-gray-300">プロテイン（杯）:</label>
-                <input type="number" step="any" class="form-control" id="protein_drinks" name="protein_drinks" >           
+                <input type="number" step="any" class="form-control rounded-md" id="protein_drinks" name="protein_drinks" >           
             </div>
             <div class="mb-4">
                 <label for="image" class="text-gray-700 dark:text-gray-300">朝食の画像:</label>
